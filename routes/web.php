@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,4 +35,12 @@ require __DIR__.'/auth.php';
 
 
 // rotta per pagina di amministrazione
-Route::get('/admin', [DashboardController::class,'index']);
+// Route::get('/admin', [DashboardController::class,'index'])->middleware('auth');
+
+Route::middleware(['auth', 'verified'])
+ ->name('admin.')
+ ->prefix('admin')
+ ->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('index');
+    Route::get('/users', [DashboardController::class, 'users'])->name('users');
+ });
