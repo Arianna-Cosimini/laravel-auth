@@ -44,7 +44,12 @@ class StoreprojectRequest extends FormRequest
     }
 
     public function attributes(): array{
-        return [] ;
+        return [
+            "name"=> "titolo",
+            "description"=> "descrizione",
+            "code"=> "linguaggio",
+            "link"=> "url",
+        ] ;
     }
 }
 
