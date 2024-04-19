@@ -4,7 +4,7 @@
     <div class="container py-5">
 
         <img src="{{ $project->thumb }}" alt="">
-        <h1>{{ $project->title }}</h1>
+        <h1>{{ $project->name }}</h1>
 
 
         <p>
@@ -36,7 +36,7 @@
                 </div>
 
                 <div class="modal-body">
-                    Sei sicuro che vuoi eliminare il progetto? "{{ $project->title }}"
+                    Sei sicuro che vuoi eliminare il progetto? "{{ $project->name }}"
                 </div>
 
 

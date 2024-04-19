@@ -22,7 +22,30 @@ class StoreprojectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "name" => "required|max:100",
+            "description" => "required|max:5000",
+            "thumb" => "nullable",
+            "code" => "required|max:50",
+            "link" => "required|max:200",
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Il titolo deve essere inserito',
+            'name.max' => "Il titolo deve avere massimo :max caratteri",
+            'code.max' => "La tipologia del linguaggio utilizzato deve avere massimo :max caratteri",
+            'code.required' => 'La tipologia del linguaggio utilizzato deve essere inserita',
+            'description.max' => "Inserisci una descrizione di massimo :max caratteri",
+            'link.required' => "L'url del tuo indirizzo deve essere inserito",
+            
+        ];
+    }
+
+    public function attributes(): array{
+        return [] ;
+    }
 }
+
+
