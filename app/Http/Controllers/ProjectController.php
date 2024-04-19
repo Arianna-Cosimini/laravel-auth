@@ -51,7 +51,7 @@ class ProjectController extends Controller
      */
     public function edit(project $project)
     {
-        //
+        return view('admin.edit', compact('project'));
     }
 
     /**
