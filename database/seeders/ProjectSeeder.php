@@ -19,7 +19,7 @@ class ProjectSeeder extends Seeder
             $newProject->name = $faker->name();
             $newProject->description = $faker->text(100);
             $newProject->thumb = $faker->imageUrl(360, 360, 'animals', 'true');
-            $newProject->code = $faker->words(5, true);
+            $newProject->code = $faker->words(1, true);
             $newProject->link = 'uploads/project-' . $faker->randomNumber() . '.pdf';
             $newProject->save();
         }
