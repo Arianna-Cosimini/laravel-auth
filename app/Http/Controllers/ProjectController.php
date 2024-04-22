@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\project;
 use App\Http\Requests\StoreprojectRequest;
 use App\Http\Requests\UpdateprojectRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -31,8 +32,17 @@ class ProjectController extends Controller
      */
     public function store(StoreprojectRequest $request)
     {
+        dd($request);
         $request->validated();
         $newProject = new Project();
+
+        if ($request->hasFile("'thumb")) {
+
+            $path = Storage::disk("public")->put("post_images", $request->thumb);
+            $newProject->thumb = $path;
+        }
+
+
         $newProject->fill($request->all());
         $newProject->save();
         return redirect()->route('projects.index');
@@ -59,7 +69,15 @@ class ProjectController extends Controller
      */
     public function update(StoreprojectRequest $request, project $project)
     {
+        dd($request);
         $request->validated();
+
+        if ($request->hasFile("'thumb")) {
+
+            $path = Storage::disk("public")->put("post_images", $request->thumb);
+            $project->thumb = $path;
+        }
+
         $project->fill($request->all());
         $project->save();
 
@@ -71,7 +89,7 @@ class ProjectController extends Controller
      */
     public function destroy(project $project)
     {
-        $project->delete(); 
+        $project->delete();
         return redirect()->route("projects.index");
     }
 }

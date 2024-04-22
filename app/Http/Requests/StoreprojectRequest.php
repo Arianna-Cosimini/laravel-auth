@@ -40,6 +40,7 @@ class StoreprojectRequest extends FormRequest
             'description.max' => "Inserisci una descrizione di massimo :max caratteri",
             'link.required' => "L'url del tuo indirizzo deve essere inserito",
             
+            
         ];
     }
 
