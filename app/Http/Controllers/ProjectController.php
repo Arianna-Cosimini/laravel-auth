@@ -71,6 +71,7 @@ class ProjectController extends Controller
      */
     public function destroy(project $project)
     {
-        //
+        $project->delete(); 
+        return redirect()->route("projects.index");
     }
 }
