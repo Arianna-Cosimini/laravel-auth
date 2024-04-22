@@ -7,7 +7,7 @@
 
         {{-- nel form scriviamo il nome della rotta come action --}}
         {{-- indichiamo anche il metodo POST per la richiesta --}}
-        <form action="{{ route('projects.store') }}" method="POST">
+        <form action="{{ route('projects.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="mb-3">
