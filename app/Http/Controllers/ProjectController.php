@@ -16,7 +16,7 @@ class ProjectController extends Controller
     {
         $projects = Project::all();
 
-        return view("admin.index", compact("projects"));
+        return view("admin.projects.index", compact("projects"));
     }
 
     /**
@@ -24,7 +24,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view("admin.create");
+        return view("admin.projects.create");
     }
 
     /**
@@ -32,20 +32,20 @@ class ProjectController extends Controller
      */
     public function store(StoreprojectRequest $request)
     {
-        dd($request);
+        // dd($request);
         $request->validated();
         $newProject = new Project();
 
-        if ($request->hasFile("'thumb")) {
+        // if ($request->hasFile("'thumb")) {
 
-            $path = Storage::disk("public")->put("post_images", $request->thumb);
-            $newProject->thumb = $path;
-        }
+        //     $path = Storage::disk("public")->put("post_images", $request->thumb);
+        //     $newProject->thumb = $path;
+        // }
 
 
         $newProject->fill($request->all());
         $newProject->save();
-        return redirect()->route('projects.index');
+        return redirect()->route('admin.projects.index');
     }
 
     /**
@@ -53,7 +53,7 @@ class ProjectController extends Controller
      */
     public function show(project $project)
     {
-        return view("admin.show", compact("project"));
+        return view("admin.projects.show", compact("project"));
     }
 
     /**
@@ -61,7 +61,7 @@ class ProjectController extends Controller
      */
     public function edit(project $project)
     {
-        return view('admin.edit', compact('project'));
+        return view('admin.projects.edit', compact('project'));
     }
 
     /**
@@ -72,16 +72,16 @@ class ProjectController extends Controller
         dd($request);
         $request->validated();
 
-        if ($request->hasFile("'thumb")) {
+        // if ($request->hasFile("'thumb")) {
 
-            $path = Storage::disk("public")->put("post_images", $request->thumb);
-            $project->thumb = $path;
-        }
+        //     $path = Storage::disk("public")->put("post_images", $request->thumb);
+        //     $project->thumb = $path;
+        // }
 
         $project->fill($request->all());
         $project->save();
 
-        return redirect()->route("projects.show", $project->id);
+        return redirect()->route("admin.projects.show", $project->id);
     }
 
     /**
@@ -90,6 +90,6 @@ class ProjectController extends Controller
     public function destroy(project $project)
     {
         $project->delete();
-        return redirect()->route("projects.index");
+        return redirect()->route("admin.projects.index");
     }
 }
